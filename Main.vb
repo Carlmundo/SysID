@@ -83,16 +83,16 @@ Public Class Main
             Else
                 RAM_Capacity = obj("Capacity") / 1048576 & " MB"
             End If
-            If obj("MemoryType") = 0 Or 22 Then
-                RAM_Type = "DDR3"
-            ElseIf obj("MemoryType") = 20 Then
-                RAM_Type = "DDR"
-            ElseIf obj("MemoryType") = 21 Then
-                RAM_Type = "DDR2"
-            Else
-                RAM_Type = ""
-            End If
-
+            Select Case obj("MemoryType")
+                Case 0
+                    RAM_Type = "DDR4"
+                Case 24
+                    RAM_Type = "DDR3"
+                Case 22
+                    RAM_Type = "DDR2"
+                Case 21
+                    RAM_Type = "DDR"
+            End Select
 
             If strRAM_Extra <> "" Then strRAM_Extra = strRAM_Extra & vbCrLf
             strRAM_Extra = strRAM_Extra & "Slot " & i + 1 & ": " & RAM_Manufacturer & RAM_Capacity & " " & RAM_Type & " " & obj("Speed") & "Mhz"
